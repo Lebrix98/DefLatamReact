@@ -1,0 +1,35 @@
+.Container_Header {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0 100%),
+    url(./../../assets/Header.jpg);
+  width: 100%;
+  object-fit: cover;
+  height: calc(100vh - 50vh);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+
+  > .Content_Header {
+    width: 100%;
+    max-width: 50%;
+    display: flex;
+    flex-flow: column wrap;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
+
+    > .Text_Header {
+      width: 100%;
+      font-size: 2.8rem;
+      margin-bottom: 0.4rem;
+      font-weight: 500;
+    }
+
+    > .Desc_Header {
+      width: 100%;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid rgba(128, 128, 128, 0.8);
+    }
+  }
+}
