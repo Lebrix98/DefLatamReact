@@ -12,7 +12,7 @@
 
   > .Card_pizza {
     width: 100%;
-    max-width: 25%;
+    max-width: 20%;
     border: 1px solid rgba(128, 128, 128, 0.5);
     border-radius: 0.5rem;
     padding-bottom: 1.5rem;
@@ -76,16 +76,18 @@
         }
       }
       > button:nth-child(1) {
+        border: 2px solid #000;
         background-color: transparent;
         color: #000;
       }
 
       > button:nth-child(1):hover {
         color: rgb(128, 128, 128);
-        border: 1px solid rgb(128, 128, 128);
+        border: 2px solid rgb(128, 128, 128);
       }
 
       > button:nth-child(2) {
+        border: 1px solid #fff;
         background-color: #000;
         color: #fff;
       }
