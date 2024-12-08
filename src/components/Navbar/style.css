@@ -6,7 +6,6 @@
     justify-content: space-between;
     align-items: center;
     background-color: #161616;
-    padding: 0.5rem;
 
     > .Left_btn {
       display: flex;

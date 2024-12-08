@@ -1,30 +1,18 @@
 import { CardPizza, Header, Navbar } from "../index.jsx";
 
-import homeIcon from "./../../assets/svg/home.svg";
-import profileIcon from "./../../assets/svg/profile.svg";
-import logoutIcon from "./../../assets/svg/logout.svg";
-import logregIcon from "./../../assets/svg/log_reg.svg";
-import totalIcon from "./../../assets/svg/total.svg";
-import eyeIcons from "./../../assets/svg/eyes.svg";
+
 
 import napolitana from "./../../assets/napolitana.jpg";
 import española from "./../../assets/espanola.jpg";
 import pepperoni from "./../../assets/pepperoni.jpg";
 
-export const Home = () => {
+export const Home = ({icons}) => {
   const text = {
     title: "¡Pizzería Mamma Mia!",
     description: "¡Tenemos las mejores pizzas que podrás encontrar!",
   };
 
-  const icons = {
-    homeIcon,
-    profileIcon,
-    logoutIcon,
-    logregIcon,
-    totalIcon,
-    eyeIcons,
-  };
+
 
   const pizza = [
     {
@@ -52,7 +40,6 @@ export const Home = () => {
 
   return (
     <>
-      <Navbar icons={icons} />
       <Header text={text} />
       <CardPizza pizza={pizza} icons={icons} />
     </>
