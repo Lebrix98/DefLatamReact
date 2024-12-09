@@ -1,4 +1,4 @@
-import { CardPizza, Header, Navbar } from "../index.jsx";
+import { CardPizza, Header } from "../index.jsx";
 
 
 

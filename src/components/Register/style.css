@@ -1,0 +1,83 @@
+.Container_register {
+    width: 100%;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    margin: 2rem 0rem;
+
+    > .Title_register {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        letter-spacing: 2px;
+        font-weight: 900;
+        color: rgb(128, 128, 128);
+        text-shadow: 1px 1px #000;
+    }
+
+    > .Form_register {
+        width: 100%;
+        max-width: 50%;
+        display: flex;
+        flex-flow: column wrap;
+        align-content: center;
+        align-items: center;
+        padding: 1rem;
+        border: 5px solid rgba(241, 176, 76, 0.3);
+        border-radius: 0.2rem;
+        box-shadow: 1px 1px 10px 2px #000;
+
+        > .Form_Option {
+            width: 100%;
+            display: flex;
+            margin-bottom: 1rem;
+            align-items: center;
+            label {
+                width: 30%;
+                font-size: 1.2rem;
+            }
+            input {
+                width: 70%;
+                padding: 0.5rem;
+                font-size: 1.2rem;
+            }
+        }
+
+        > .btn_Submit {
+            width: 100%;
+            max-width: 20%;
+            display: flex;
+            justify-content: center;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 900;
+            text-shadow: 1px 1px 1px #fff;
+            border: 1px solid #000;
+            box-shadow: 1px 1px 10px 2px #000;
+            background-color: rgba(241, 176, 76, 0.3);
+        }
+
+        > .btn_Submit:hover {
+            color: #fff;
+            text-shadow: 1px 1px 1px #000;
+            background-color: rgba(177, 128, 55, 0.3);
+        }
+    }
+}
+
+.Message {
+    padding: 1rem;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.error {
+  background-color: red;
+}
+
+.success {
+  background-color: green;
+}

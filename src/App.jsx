@@ -1,4 +1,4 @@
-import { Home, Footer, Navbar } from "./components/index";
+import { Home, Footer, Navbar, Register, Login } from "./components/index";
 
 import homeIcon from "./assets/svg/home.svg";
 import profileIcon from "./assets/svg/profile.svg";
@@ -22,7 +22,9 @@ function App() {
   return (
     <>
       <Navbar icons={icons} />
-      <Home icons={icons}/>
+      {/* <Home icons={icons} /> */}
+      {/* <Register /> */}
+      <Login />
       <Footer />
     </>
   );
