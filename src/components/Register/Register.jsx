@@ -31,15 +31,11 @@ export const Register = () => {
       setMessage("Todos los campos son Obligatorios.");
       setError(true);
       return;
-    }
-
-    if (pass.length > 6) {
+    } else if (pass.length > 6) {
       setMessage("La Contraseña debe tener maximo 6 caracteres.");
       setError(true);
       return;
-    }
-
-    if (pass !== passCofirm) {
+    } else if (pass !== passCofirm) {
       setMessage("Las Contraseñas ingresadas son distintas.");
       setError(true);
       return;

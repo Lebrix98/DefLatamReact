@@ -27,9 +27,7 @@ export const Login = () => {
       setMessage("Todos los campos son Obligatorios.");
       setError(true);
       return;
-    }
-
-    if (pass.length > 6) {
+    } else if (pass.length > 6) {
       setMessage("La Contraseña debe tener maximo 6 caracteres.");
       setError(true);
       return;
