@@ -3,3 +3,5 @@ export { Footer } from './Footer/Footer';
 export { Header } from './Header/Header';
 export { Home } from './Home/Home';
 export { Navbar } from './Navbar/Navbar';
+export { Register } from './Register/Register';
+export { Login } from './Login/Login';
