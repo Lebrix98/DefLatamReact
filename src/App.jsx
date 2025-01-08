@@ -7,6 +7,8 @@ import {
   Cart,
 } from "./components/index";
 
+import {Cart2} from './components/Cart/Cart2'
+
 import homeIcon from "./assets/svg/home.svg";
 import profileIcon from "./assets/svg/profile.svg";
 import logoutIcon from "./assets/svg/logout.svg";
@@ -32,7 +34,7 @@ function App() {
       {/* <Home icons={icons} /> */}
       {/* <Register /> */}
       {/* <Login /> */}
-      <Cart />
+      <Cart2 />
       <Footer />
     </>
   );
