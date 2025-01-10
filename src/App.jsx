@@ -34,7 +34,7 @@ function App() {
       {/* <Home icons={icons} /> */}
       {/* <Register /> */}
       {/* <Login /> */}
-      <Cart2 />
+      <Cart />
       <Footer />
     </>
   );
