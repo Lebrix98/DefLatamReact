@@ -1,4 +1,11 @@
-import { Home, Footer, Navbar, Register, Login } from "./components/index";
+import {
+  Home,
+  Footer,
+  Navbar,
+  Register,
+  Login,
+  Cart,
+} from "./components/index";
 
 import homeIcon from "./assets/svg/home.svg";
 import profileIcon from "./assets/svg/profile.svg";
@@ -24,7 +31,8 @@ function App() {
       <Navbar icons={icons} />
       {/* <Home icons={icons} /> */}
       {/* <Register /> */}
-      <Login />
+      {/* <Login /> */}
+      <Cart />
       <Footer />
     </>
   );

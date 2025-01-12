@@ -1,0 +1,86 @@
+.Container_cart {
+    width: 100%;
+    max-width: 50%;
+    margin: 0 auto;
+
+    > .title_cart {
+        font-size: 1.5rem;
+        font-weight: 400;
+        margin: 2rem 0rem;
+    }
+
+  > .Content_cart {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+
+
+    > .img_pizza {
+      width: 10%;
+      object-fit: contain;
+    }
+
+    > .name_pizza {
+      width: 10%;
+      font-weight: 400;
+    }
+
+    > .price_pizza {
+      width: 10%;
+      font-weight: 400;
+    }
+
+    > .count_pizza {
+      width: 5%;
+      font-weight: 400;
+    }
+
+    > .btn_pizza {
+      width: 3%;
+      padding: 0.3rem;
+      font-size: 0.8rem;
+      background-color: transparent;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    > .btn_pizza:hover {
+      background-color: #e7e7e7;
+    }
+
+    > .add {
+      color: blue;
+      font-weight: 600;
+      border: 1.5px solid blue;
+    }
+
+    > .substract {
+      color: red;
+      font-weight: 600;
+      border: 1.5px solid red;
+    }
+  }
+
+  > .Total_pizza {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 2rem 0rem;
+  }
+
+  > .btn_Pay {
+    width: 100%;
+    max-width: 5rem;
+    padding: 0.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color:rgb(0, 0, 0);
+    color: white;
+    border: 1px solid #fff;
+  }
+
+  > .btn_Pay:hover {
+    background-color:rgb(50, 50, 50);
+  }
+}
