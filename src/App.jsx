@@ -5,6 +5,7 @@ import {
   Register,
   Login,
   Cart,
+  Pizza,
 } from "./components/index";
 
 import homeIcon from "./assets/svg/home.svg";
@@ -32,7 +33,8 @@ function App() {
       {/* <Home icons={icons} /> */}
       {/* <Register /> */}
       {/* <Login /> */}
-      <Cart />
+      {/* <Cart /> */}
+      <Pizza />
       <Footer />
     </>
   );
