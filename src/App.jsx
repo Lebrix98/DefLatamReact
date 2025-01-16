@@ -34,7 +34,7 @@ function App() {
       {/* <Register /> */}
       {/* <Login /> */}
       {/* <Cart /> */}
-      <Pizza />
+      <Pizza icons={icons} />
       <Footer />
     </>
   );
