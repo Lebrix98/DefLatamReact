@@ -4,64 +4,47 @@ import { Capitalize } from "../../Helpers/functions";
 import "./style.css";
 
 export const Cart = () => {
-  const [cart, setCart] = useState({});
+  const [cart, setCart] = useState(pizzaCart);
 
-  const handleAdd = (arr) => {
-    setCart((event) => {
-      if (event[arr.id]) {
-        return {
-          ...event,
-          [arr.id]: { ...event[arr.id], count: event[arr.id].count + 1 },
-        };
-      }
-      return {
-        ...event,
-        [arr.id]: { ...arr, count: 1 },
-      };
-    });
+  const handleAdd = (id) => {
+    setCart((prevCart) =>
+      prevCart.map((item) =>
+        item.id === id ? { ...item, count: item.count + 1 } : item
+      )
+    );
   };
 
-  const handleSubstract = (arr) => {
-    setCart((event) => {
-      if (event[arr.id] && event[arr.id].count > 1) {
-        return {
-          ...event,
-          [arr.id]: { ...event[arr.id], count: event[arr.id].count - 1 },
-        };
-      }
-
-      const updateCart = { ...event };
-      delete updateCart[arr.id];
-      return updateCart;
-    });
+  const handleSubstract = (id) => {
+    setCart((prevCart) =>
+      prevCart
+        .map((item) =>
+          item.id === id ? { ...item, count: item.count - 1 } : item
+        )
+        .filter((item) => item.count > 0)
+    );
   };
 
-  const total = Object.values(cart).reduce(
-    (acc, pizza) => acc + pizza.price * pizza.count,
-    0
-  );
+  const total = cart.reduce((acc, pizza) => acc + pizza.price * pizza.count, 0);
 
   return (
     <div className="Container_cart">
       <h1 className="title_cart">Detalles del Pedido:</h1>
-      {pizzaCart.map((arr) => {
-        const pizzaInCart = cart[arr.id] || { count: 0 };
-
+      {cart.map((arr) => {
         return (
           <div className="Content_cart" key={arr.id}>
             <img className="img_pizza" src={arr.img} alt={arr.name} />
             <h4 className="name_pizza">{Capitalize(arr.name)}</h4>
             <h4 className="price_pizza">
-              $ {(arr.price * pizzaInCart.count).toLocaleString()}
+              $ {arr.price.toLocaleString("es-CL")}
             </h4>
             <button
               className="btn_pizza substract"
-              onClick={() => handleSubstract(arr)}
+              onClick={() => handleSubstract(arr.id)}
             >
               -
             </button>
-            <h4 className="count_pizza">{pizzaInCart.count}</h4>
-            <button className="btn_pizza add" onClick={() => handleAdd(arr)}>
+            <h4 className="count_pizza">{arr.count}</h4>
+            <button className="btn_pizza add" onClick={() => handleAdd(arr.id)}>
               +
             </button>
           </div>
