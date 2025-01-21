@@ -1,6 +1,6 @@
 // import { pizzas } from "../../data/pizzas.js";
 import { useEffect, useState } from "react";
-import { CardPizza, Header } from "../index.jsx";
+import { CardPizza, Header } from "../../index.jsx";
 
 
 export const Home = ({icons}) => {

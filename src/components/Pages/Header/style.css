@@ -1,6 +1,6 @@
 .Container_Header {
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0 100%),
-    url(./../../assets/Header.jpg);
+    url(./../../../assets/Header.jpg);
   width: 100%;
   object-fit: cover;
   height: calc(100vh - 50vh);

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Capitalize } from "../../Helpers/functions";
+import { Capitalize } from "../../../Helpers/functions";
 import "./style.css";
 
 export const Pizza = ({ icons }) => {

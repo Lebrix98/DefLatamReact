@@ -1,9 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./style.css";
 
 export const Navbar = ({ icons }) => {
   const total = 25000;
-  const token = false;
+  const token = true;
 
   const { homeIcon, profileIcon, logoutIcon, logregIcon, totalIcon } = icons;
 
@@ -13,38 +14,38 @@ export const Navbar = ({ icons }) => {
         <div className="Content_Navbar">
           <div className="Left_btn">
             <p>Pizzería Mamma Mia!</p>
-            <button>
+            <Link to="/" className="Route">
               <img src={homeIcon} />
               Home
-            </button>
+            </Link>
             {token ? (
               <>
-                <button>
+                <Link className="Route" to="/profile">
                   <img src={profileIcon} />
                   Profile
-                </button>
-                <button>
+                </Link>
+                <Link className="Route" to="/">
                   <img src={logoutIcon} />
                   Logout
-                </button>
+                </Link>
               </>
             ) : (
               <>
-                <button>
+                <Link className="Route" to="/login">
                   <img src={logregIcon} />
                   Login
-                </button>
-                <button>
+                </Link>
+                <Link className="Route" to="/register">
                   <img src={logregIcon} />
                   Register
-                </button>
+                </Link>
               </>
             )}
           </div>
           <div className="Right_btn">
-            <button>
+            <Link className="Route" to="/cart">
               <img src={totalIcon} /> Total : $ {total.toLocaleString()}
-            </button>
+            </Link>
           </div>
         </div>
       </div>

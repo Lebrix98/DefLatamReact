@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { pizzaCart } from "../../data/pizzas";
-import { Capitalize } from "../../Helpers/functions";
+import { pizzaCart } from "../../../data/pizzas";
+import { Capitalize } from "../../../Helpers/functions";
 import "./style.css";
 
 export const Cart = () => {
