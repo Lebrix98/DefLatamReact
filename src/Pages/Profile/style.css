@@ -30,7 +30,6 @@
       > .information {
         color: #000;
         letter-spacing: 0.5px;
-        text-align: justify;
 
         > .name {
           margin-bottom: 1rem;
@@ -46,6 +45,25 @@
         }
         > .contact {
           margin-bottom: 0.5rem;
+        }
+      }
+    }
+
+    @media (max-width: 800px) {
+      > .card_user {
+        align-items: center;
+        display: flex;
+        flex-flow: column wrap;
+        width: 100%;
+
+        > .img_user {
+          border-radius: 0px;
+          margin-right: 0rem;
+          margin-bottom: 1rem;
+        }
+
+        > .information {
+          text-align: center;
         }
       }
     }

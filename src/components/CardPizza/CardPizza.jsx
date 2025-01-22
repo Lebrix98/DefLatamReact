@@ -1,5 +1,6 @@
 import React from "react";
 import "./style.css";
+import { Link } from "react-router-dom";
 
 export const CardPizza = ({ pizza, icons }) => {
   const { homeIcon, eyeIcons, totalIcon } = icons;
@@ -14,19 +15,21 @@ export const CardPizza = ({ pizza, icons }) => {
             <h3>Ingedientes :</h3>
             <h4>
               <img src={homeIcon} alt={homeIcon} />
-              {ingredients.map((p, index) => {
-                return <li key={index}>{p}</li>;
-              })}
+              <ul>
+                {ingredients.map((p, index) => {
+                  return <li key={index}>{p},</li>;
+                })}
+              </ul>
             </h4>
           </div>
           <h4 className="price_pizza">
             Precio : $ {price.toLocaleString("es-CL")}
           </h4>
           <div className="buttons_pizza">
-            <button>
+            <Link className="btn" to={`/pizza/${id}`}>
               Ver Más <img src={eyeIcons} alt="" />
-            </button>
-            <button>
+            </Link>
+            <button className="btn">
               Añadir <img src={totalIcon} alt="" />
             </button>
           </div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Capitalize } from "../../../Helpers/functions";
+import { Capitalize } from "../../Helpers/functions";
 import "./style.css";
 
 export const Pizza = ({ icons }) => {
@@ -10,7 +10,6 @@ export const Pizza = ({ icons }) => {
     const url = "http://localhost:5000/api/pizzas/p001";
     const res = await fetch(url);
     const data = await res.json();
-    console.log(data);
     setPizza(data);
   };
 
@@ -18,7 +17,6 @@ export const Pizza = ({ icons }) => {
     getData();
   }, []);
 
-  console.log(pizza);
 
   return (
     <div className="Container_only">

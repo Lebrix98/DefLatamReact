@@ -1,6 +1,6 @@
 .Container_Header {
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0 100%),
-    url(./../../../assets/Header.jpg);
+    url(./../../assets/Header.jpg);
   width: 100%;
   object-fit: cover;
   height: calc(100vh - 50vh);
@@ -30,6 +30,12 @@
       width: 100%;
       padding-bottom: 0.8rem;
       border-bottom: 1px solid rgba(128, 128, 128, 0.8);
+    }
+  }
+
+  @media (max-width: 800px) {
+    > .Content_Header {
+      max-width: 80%;
     }
   }
 }

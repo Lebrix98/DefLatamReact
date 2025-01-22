@@ -1,15 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 
-import {
-  Home,
-  Footer,
-  Navbar,
-  Register,
-  Login,
-  Cart,
-  Pizza,
-  Profile,
-} from "./components/index";
+import { Home, Register, Login, Cart, Profile, Error } from "./Pages/index";
+import { Footer, Navbar, Pizza } from "./components";
 
 import homeIcon from "./assets/svg/home.svg";
 import profileIcon from "./assets/svg/profile.svg";
@@ -29,6 +21,7 @@ function App() {
     totalIcon,
     eyeIcons,
   };
+  
 
   return (
     <>
@@ -42,9 +35,9 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/cart" element={<Cart />} />
-            <Route path="/pizza/p001" element={<Pizza icons={icons} />} />
+            <Route path={`/pizza/p001`} element={<Pizza icons={icons} />} />
             <Route path="/profile" element={<Profile />} />
-            {/* <Route path="/*" element={} /> */}
+            <Route path="/*" element={<Error />} />
           </Routes>
         </main>
         <footer id="footer">

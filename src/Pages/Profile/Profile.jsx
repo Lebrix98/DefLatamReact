@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import "./style.css";
 import { Link } from "react-router-dom";
+import "./style.css";
 
 export const Profile = () => {
   const [user, setUser] = useState([]);
@@ -11,7 +11,6 @@ export const Profile = () => {
       const url = "https://randomuser.me/api/";
       const res = await fetch(url);
       const data = await res.json();
-      console.log(data);
       setUser(data.results);
     } catch (error) {
       setMessage(error);
@@ -37,9 +36,8 @@ export const Profile = () => {
                   />
                   <div className="information">
                     <h1 className="name">
-                      Nombre: {i.name.first} {i.name.last}
+                      {i.name.first} {i.name.last}
                     </h1>
-                    <h3 className="age">Edad: {i.dob.age} Años</h3>
                     <h3 className="location">
                       Dirección: {i.location.state}, {i.location.city} ,
                       {i.location.country}
