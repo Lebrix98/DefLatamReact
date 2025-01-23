@@ -40,9 +40,9 @@ export const Login = () => {
 
   return (
     <>
-      <div className="Container_register">
-        <h2 className="Title_register">Login</h2>
-        <form className="Form_register" onSubmit={validateInput}>
+      <div className="Container_login">
+        <h2 className="Title_login">Login</h2>
+        <form className="Form_login" onSubmit={validateInput}>
           <p
             className={`Message ${
               error ? "error" : message.length != 0 ? "success" : null

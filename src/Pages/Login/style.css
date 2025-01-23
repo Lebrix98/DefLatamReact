@@ -1,13 +1,11 @@
-.Container_register {
+.Container_login {
   width: 100%;
   display: flex;
   flex-flow: column wrap;
   align-items: center;
   margin: 2rem 0rem;
-  /* Height se tiene que sacar despues */
-  height: calc(100vh - 15vh);
 
-  > .Title_register {
+  > .Title_login {
     font-size: 2rem;
     margin-bottom: 1rem;
     letter-spacing: 2px;
@@ -16,7 +14,7 @@
     text-shadow: 1px 1px #000;
   }
 
-  > .Form_register {
+  > .Form_login {
     width: 100%;
     max-width: 50%;
     display: flex;
@@ -63,6 +61,29 @@
       color: #fff;
       text-shadow: 1px 1px 1px #000;
       background-color: rgba(177, 128, 55, 0.3);
+    }
+
+    @media (max-width: 800px) {
+      flex-flow: column nowrap !important;
+
+      > .Form_Option {
+        flex-direction: column;
+        margin-bottom: 1rem;
+        label {
+          margin-bottom: 1rem;
+          text-align: center;
+        }
+        input {
+          width: 80%;
+          padding: 0.5rem;
+          font-size: 1.2rem;
+        }
+      }
+
+      > .btn_Submit {
+        max-width: 80% !important;
+        margin-top: 1rem;
+      }
     }
   }
 }
