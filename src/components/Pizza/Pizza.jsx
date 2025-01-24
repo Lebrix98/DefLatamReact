@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Capitalize } from "../../Helpers/functions";
 import "./style.css";
+import { Link } from "react-router-dom";
 
 export const Pizza = ({ icons }) => {
   const [pizza, setPizza] = useState([]);
@@ -16,7 +17,6 @@ export const Pizza = ({ icons }) => {
   useEffect(() => {
     getData();
   }, []);
-
 
   return (
     <div className="Container_only">
@@ -40,6 +40,12 @@ export const Pizza = ({ icons }) => {
         <h2 className="price">
           Precio <span>${pizza.price?.toLocaleString("es-CL")}</span>
         </h2>
+        <div className="btn_back">
+          <Link to="/" className="btn_link">
+            {" "}
+            Volver{" "}
+          </Link>
+        </div>
       </div>
     </div>
   );
