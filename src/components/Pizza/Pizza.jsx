@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Capitalize } from "../../Helpers/functions";
 import "./style.css";
+import { Link } from "react-router-dom";
 
 export const Pizza = ({ icons }) => {
   const [pizza, setPizza] = useState([]);
@@ -10,15 +11,12 @@ export const Pizza = ({ icons }) => {
     const url = "http://localhost:5000/api/pizzas/p001";
     const res = await fetch(url);
     const data = await res.json();
-    console.log(data);
     setPizza(data);
   };
 
   useEffect(() => {
     getData();
   }, []);
-
-  console.log(pizza);
 
   return (
     <div className="Container_only">
@@ -42,6 +40,12 @@ export const Pizza = ({ icons }) => {
         <h2 className="price">
           Precio <span>${pizza.price?.toLocaleString("es-CL")}</span>
         </h2>
+        <div className="btn_back">
+          <Link to="/" className="btn_link">
+            {" "}
+            Volver{" "}
+          </Link>
+        </div>
       </div>
     </div>
   );

@@ -1,12 +1,7 @@
-import {
-  Home,
-  Footer,
-  Navbar,
-  Register,
-  Login,
-  Cart,
-  Pizza,
-} from "./components/index";
+import { Route, Routes } from "react-router-dom";
+
+import { Home, Register, Login, Cart, Profile, Error } from "./Pages/index";
+import { Footer, Navbar, Pizza } from "./components";
 
 import homeIcon from "./assets/svg/home.svg";
 import profileIcon from "./assets/svg/profile.svg";
@@ -26,16 +21,29 @@ function App() {
     totalIcon,
     eyeIcons,
   };
+  
 
   return (
     <>
-      <Navbar icons={icons} />
-      {/* <Home icons={icons} /> */}
-      {/* <Register /> */}
-      {/* <Login /> */}
-      {/* <Cart /> */}
-      <Pizza icons={icons} />
-      <Footer />
+      <div className="grid-container">
+        <header id="header">
+          <Navbar icons={icons} />
+        </header>
+        <main id="main">
+          <Routes>
+            <Route path="/" element={<Home icons={icons} />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path={`/pizza/p001`} element={<Pizza icons={icons} />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/*" element={<Error />} />
+          </Routes>
+        </main>
+        <footer id="footer">
+          <Footer />
+        </footer>
+      </div>
     </>
   );
 }

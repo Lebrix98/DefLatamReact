@@ -32,4 +32,10 @@
       border-bottom: 1px solid rgba(128, 128, 128, 0.8);
     }
   }
+
+  @media (max-width: 800px) {
+    > .Content_Header {
+      max-width: 80%;
+    }
+  }
 }
