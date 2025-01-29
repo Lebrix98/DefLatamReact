@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { pizzaCart } from "../../data/pizzas";
+import React, { useContext } from "react";
+import { PizzaContext } from "../../Context/PizzaContext";
 import { Capitalize } from "../../Helpers/functions";
 import "./style.css";
 
 export const Cart = () => {
-  const [cart, setCart] = useState(pizzaCart);
+  const { carts, setCarts, total } = useContext(PizzaContext);
 
   const handleAdd = (id) => {
-    setCart((prevCart) =>
+    setCarts((prevCart) =>
       prevCart.map((item) =>
         item.id === id ? { ...item, count: item.count + 1 } : item
       )
@@ -15,7 +15,7 @@ export const Cart = () => {
   };
 
   const handleSubstract = (id) => {
-    setCart((prevCart) =>
+    setCarts((prevCart) =>
       prevCart
         .map((item) =>
           item.id === id ? { ...item, count: item.count - 1 } : item
@@ -24,14 +24,11 @@ export const Cart = () => {
     );
   };
 
-  const total = cart.reduce((acc, pizza) => acc + pizza.price * pizza.count, 0);
-
   return (
     <div className="Container_cart">
       <h1 className="title_cart">Detalles del Pedido:</h1>
-      {cart.length !== 0 ? (
-        cart.map((arr) => {
-          console.log(cart.length);
+      {carts.length !== 0 ? (
+        carts.map((arr) => {
           return (
             <div className="Content_cart" key={arr.id}>
               <img className="img_pizza" src={arr.img} alt={arr.name} />
@@ -62,7 +59,7 @@ export const Cart = () => {
       )}
       <h2 className="Total_pizza">Total: $ {total.toLocaleString()}</h2>
       <div className="btn_buy">
-        <button className={cart.length !== 0 ? "btn_Pay" : "btn_Pay disable"}>
+        <button className={carts.length !== 0 ? "btn_Pay" : "btn_Pay disable"}>
           Pagar
         </button>
       </div>

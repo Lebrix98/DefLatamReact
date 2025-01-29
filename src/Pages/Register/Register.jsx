@@ -95,34 +95,3 @@ export const Register = () => {
 };
 
 export default Register;
-
-//   const dataForm = [
-//     {
-//       id: 1,
-//       label: "Email",
-//       type: "email",
-//       name: "email",
-//       value: email,
-//       setter: (e) => setEmail(e.target.value),
-//     },
-//     {
-//       id: 2,
-//       label: "Contraseña",
-//       type: "password",
-//       name: "password",
-//       value: pass,
-//       setter: (e) => setPass(e.target.value),
-//     },
-//   ];
-
-/* {dataForm.map(({ id, label, name, type, value, setter }) => {
-    <div id={id}>
-        <label>{label}</label>
-        <input
-            type={type}
-            name={name}
-            onChange={setter}
-            value={value}
-        />
-    </div>;
-})}*/

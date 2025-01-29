@@ -1,9 +1,34 @@
-import React from "react";
-import "./style.css";
+import React, { useContext } from "react";
+import { PizzaContext } from "../../Context/PizzaContext";
 import { Link } from "react-router-dom";
+import "./style.css";
 
-export const CardPizza = ({ pizza, icons }) => {
+export const CardPizza = ({ icons }) => {
+  const { pizza, carts, setCarts } = useContext(PizzaContext);
   const { homeIcon, eyeIcons, totalIcon } = icons;
+
+  const handleSelected = (id) => {
+    let selectedPizza = pizza.find((item) => item.id === id);
+
+    let existingPizza = carts.find((item) => item.id === id);
+
+    if (existingPizza) {
+      setCarts((prevCarts) =>
+        prevCarts.map((item) =>
+          item.id === id ? { ...item, count: item.count + 1 } : item
+        )
+      );
+    } else {
+      let cartPizza = {
+        id: selectedPizza.id,
+        name: selectedPizza.name,
+        price: selectedPizza.price,
+        count: 1,
+        img: selectedPizza.img,
+      };
+      setCarts((prevCarts) => [...prevCarts, cartPizza]);
+    }
+  };
 
   return (
     <div className="Container_pizza">
@@ -29,7 +54,7 @@ export const CardPizza = ({ pizza, icons }) => {
             <Link className="btn" to={`/pizza/${id}`}>
               Ver Más <img src={eyeIcons} alt="" />
             </Link>
-            <button className="btn">
+            <button className="btn" onClick={() => handleSelected(id)}>
               Añadir <img src={totalIcon} alt="" />
             </button>
           </div>

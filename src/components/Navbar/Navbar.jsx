@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { PizzaContext } from "../../Context/PizzaContext";
 import "./style.css";
 
 export const Navbar = ({ icons }) => {
-  const total = 25000;
+  const { total } = useContext(PizzaContext)
   const token = true;
+
 
   const { homeIcon, profileIcon, logoutIcon, logregIcon, totalIcon } = icons;
 
@@ -44,7 +46,7 @@ export const Navbar = ({ icons }) => {
           </div>
           <div className="Right_btn">
             <Link className="Route" to="/cart">
-              <img src={totalIcon} /> Total : $ {total.toLocaleString()}
+              <img src={totalIcon} /> Total : $ {total.toLocaleString("es-CL")}
             </Link>
           </div>
         </div>
