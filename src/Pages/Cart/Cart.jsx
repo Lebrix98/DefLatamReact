@@ -57,7 +57,7 @@ export const Cart = () => {
       ) : (
         <p className="notPizza">No hay nada en el Carrito :(</p>
       )}
-      <h2 className="Total_pizza">Total: $ {total.toLocaleString()}</h2>
+      <h2 className="Total_pizza">Total: $ {total.toLocaleString("es-CL")}</h2>
       <div className="btn_buy">
         <button className={carts.length !== 0 ? "btn_Pay" : "btn_Pay disable"}>
           Pagar
