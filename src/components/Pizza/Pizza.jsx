@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Capitalize } from "../../Helpers/functions";
 import "./style.css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export const Pizza = ({ icons }) => {
   const [descPizza, setDescPizza] = useState([]);
 
+  const { id } = useParams();
+
   const { homeIcon } = icons;
 
   const getData = async () => {
-    const url = "http://localhost:5000/api/pizzas/p001";
+    const url = `http://localhost:5000/api/pizzas/${id}`;
     const res = await fetch(url);
     const data = await res.json();
     setDescPizza(data);

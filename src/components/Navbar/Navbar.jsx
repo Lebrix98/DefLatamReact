@@ -1,12 +1,15 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { PizzaContext } from "../../Context/PizzaContext";
 import "./style.css";
 
 export const Navbar = ({ icons }) => {
-  const { total } = useContext(PizzaContext)
-  const token = true;
+  const { total } = useContext(PizzaContext);
 
+  const setActiveClass = ({ isActive }) =>
+    isActive ? `Route isActive` : "Route";
+
+  const token = true;
 
   const { homeIcon, profileIcon, logoutIcon, logregIcon, totalIcon } = icons;
 
@@ -16,38 +19,38 @@ export const Navbar = ({ icons }) => {
         <div className="Content_Navbar">
           <div className="Left_btn">
             <p>Pizzería Mamma Mia!</p>
-            <Link to="/" className="Route">
+            <NavLink to="/" className={setActiveClass}>
               <img src={homeIcon} />
               Home
-            </Link>
+            </NavLink>
             {token ? (
               <>
-                <Link className="Route" to="/profile">
+                <NavLink className={setActiveClass} to="/profile">
                   <img src={profileIcon} />
                   Profile
-                </Link>
-                <Link className="Route" to="/">
+                </NavLink>
+                <NavLink className={setActiveClass} to="/logout">
                   <img src={logoutIcon} />
                   Logout
-                </Link>
+                </NavLink>
               </>
             ) : (
               <>
-                <Link className="Route" to="/login">
+                <NavLink className={setActiveClass} to="/login">
                   <img src={logregIcon} />
                   Login
-                </Link>
-                <Link className="Route" to="/register">
+                </NavLink>
+                <NavLink className={setActiveClass} to="/register">
                   <img src={logregIcon} />
                   Register
-                </Link>
+                </NavLink>
               </>
             )}
           </div>
           <div className="Right_btn">
-            <Link className="Route" to="/cart">
+            <NavLink className="Route" to="/cart">
               <img src={totalIcon} /> Total : $ {total.toLocaleString("es-CL")}
-            </Link>
+            </NavLink>
           </div>
         </div>
       </div>

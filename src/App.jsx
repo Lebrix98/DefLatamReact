@@ -37,7 +37,7 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
               <Route path="/cart" element={<Cart />} />
-              <Route path={`/pizza/p001`} element={<Pizza icons={icons} />} />
+              <Route path="/pizza/:id" element={<Pizza icons={icons} />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/*" element={<Error />} />
             </Routes>

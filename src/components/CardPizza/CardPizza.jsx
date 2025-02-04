@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
 import { PizzaContext } from "../../Context/PizzaContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./style.css";
 
 export const CardPizza = ({ icons }) => {
   const { pizza, carts, setCarts } = useContext(PizzaContext);
   const { homeIcon, eyeIcons, totalIcon } = icons;
+  const navigate = useNavigate();
 
   const handleSelected = (id) => {
     let selectedPizza = pizza.find((item) => item.id === id);
@@ -30,6 +31,10 @@ export const CardPizza = ({ icons }) => {
     }
   };
 
+  const goPizza = (id) => {
+    navigate(`/pizza/${id}`);
+  };
+
   return (
     <div className="Container_pizza">
       {pizza.map(({ id, name, desc, price, ingredients, img }) => (
@@ -51,9 +56,9 @@ export const CardPizza = ({ icons }) => {
             Precio : $ {price.toLocaleString("es-CL")}
           </h4>
           <div className="buttons_pizza">
-            <Link className="btn" to={`/pizza/${id}`}>
+            <button className="btn" onClick={() => goPizza(id)}>
               Ver Más <img src={eyeIcons} alt="" />
-            </Link>
+            </button>
             <button className="btn" onClick={() => handleSelected(id)}>
               Añadir <img src={totalIcon} alt="" />
             </button>
