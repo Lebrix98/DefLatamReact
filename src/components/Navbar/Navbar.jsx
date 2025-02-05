@@ -1,15 +1,15 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { PizzaContext } from "../../Context/PizzaContext";
+import { UserContext } from "../../Context/UserContext";
 import "./style.css";
 
 export const Navbar = ({ icons }) => {
   const { total } = useContext(PizzaContext);
+  const { user, setUser } = useContext(UserContext);
 
   const setActiveClass = ({ isActive }) =>
     isActive ? `Route isActive` : "Route";
-
-  const token = true;
 
   const { homeIcon, profileIcon, logoutIcon, logregIcon, totalIcon } = icons;
 
@@ -23,16 +23,16 @@ export const Navbar = ({ icons }) => {
               <img src={homeIcon} />
               Home
             </NavLink>
-            {token ? (
+            {user ? (
               <>
                 <NavLink className={setActiveClass} to="/profile">
                   <img src={profileIcon} />
                   Profile
                 </NavLink>
-                <NavLink className={setActiveClass} to="/logout">
+                <button className={"Route"} onClick={() => setUser(null)}>
                   <img src={logoutIcon} />
                   Logout
-                </NavLink>
+                </button>
               </>
             ) : (
               <>

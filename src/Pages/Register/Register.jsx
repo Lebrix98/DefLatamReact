@@ -1,7 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./style.css";
+import { UserContext } from "../../Context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 export const Register = () => {
+
+  const {setRegisterUser} = useContext(UserContext)
+  const navigate = useNavigate();
+
   // Initial Value
   const initEmail = "";
   const initPass = "";
@@ -41,7 +47,14 @@ export const Register = () => {
       return;
     }
 
+    const userData = {
+      email,
+      pass
+    }
+
     setMessage("Usuario creado correctamente.");
+    setRegisterUser(userData)
+    navigate("/login")
     setError(false);
     resetValues();
   };

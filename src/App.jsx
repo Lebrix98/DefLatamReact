@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 import { Home, Register, Login, Cart, Profile, Error } from "./Pages/index";
 import { Footer, Navbar, Pizza } from "./components";
@@ -13,6 +13,8 @@ import eyeIcons from "./assets/svg/eyes.svg";
 import PizzaProvider from "./Context/PizzaContext";
 
 import "./style.css";
+import { useContext } from "react";
+import { UserContext } from "./Context/UserContext";
 
 function App() {
   const icons = {
@@ -24,6 +26,8 @@ function App() {
     eyeIcons,
   };
 
+  const { user } = useContext(UserContext);
+
   return (
     <>
       <div className="grid-container">
@@ -34,11 +38,17 @@ function App() {
           <main id="main">
             <Routes>
               <Route path="/" element={<Home icons={icons} />} />
+              <Route
+                path="/profile"
+                element={user ? <Profile /> : <Navigate to="/" />}
+              />
               <Route path="/register" element={<Register />} />
-              <Route path="/login" element={<Login />} />
+              <Route
+                path="/login"
+                element={user ? <Navigate to="/" /> : <Login />}
+              />
               <Route path="/cart" element={<Cart />} />
               <Route path="/pizza/:id" element={<Pizza icons={icons} />} />
-              <Route path="/profile" element={<Profile />} />
               <Route path="/*" element={<Error />} />
             </Routes>
           </main>

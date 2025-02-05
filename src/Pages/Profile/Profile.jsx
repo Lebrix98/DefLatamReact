@@ -1,17 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
+import { UserContext } from "../../Context/UserContext";
 
 export const Profile = () => {
-  const [user, setUser] = useState([]);
+  const [profile, setProfile] = useState([]);
   const [message, setMessage] = useState("");
+
+  const {setUser} = useContext(UserContext)
 
   const getData = async () => {
     try {
       const url = "https://randomuser.me/api/";
       const res = await fetch(url);
       const data = await res.json();
-      setUser(data.results);
+      setProfile(data.results);
     } catch (error) {
       setMessage(error);
     }
@@ -25,7 +28,7 @@ export const Profile = () => {
     <>
       <div className="Container_profile">
         {!message ? (
-          user.map((i, index) => {
+          profile.map((i, index) => {
             return (
               <div key={index} className="Content_profile">
                 <div className="card_user">
@@ -53,9 +56,9 @@ export const Profile = () => {
           <h1>No se puede cargar el usuario, pruebe mas tarde.</h1>
         )}
         <div className="Content_btn">
-          <Link to="/" className="btn_logout">
+          <button className="btn_logout" onClick={() => setUser(null)}>
             Cerrar Sesión
-          </Link>
+          </button>
         </div>
       </div>
     </>
