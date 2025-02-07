@@ -6,7 +6,7 @@ export const Profile = () => {
   const [profile, setProfile] = useState([]);
   const [message, setMessage] = useState("");
 
-  const {setUser} = useContext(UserContext)
+  const { btnLogout } = useContext(UserContext);
 
   const getData = async () => {
     try {
@@ -55,7 +55,7 @@ export const Profile = () => {
           <h1>No se puede cargar el usuario, pruebe mas tarde.</h1>
         )}
         <div className="Content_btn">
-          <button className="btn_logout" onClick={() => setUser(null)}>
+          <button className="btn_logout" onClick={btnLogout}>
             Cerrar Sesión
           </button>
         </div>

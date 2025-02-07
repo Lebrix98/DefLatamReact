@@ -5,7 +5,7 @@ import "./style.css";
 
 export const Navbar = ({ icons }) => {
   const { total } = useContext(PizzaContext);
-  const { user, setUser } = useContext(UserContext);
+  const { user, btnLogout } = useContext(UserContext);
 
   const setActiveClass = ({ isActive }) =>
     isActive ? `Route isActive` : "Route";
@@ -28,7 +28,7 @@ export const Navbar = ({ icons }) => {
                   <img src={profileIcon} />
                   Profile
                 </NavLink>
-                <button className={"Route"} onClick={() => setUser(null)}>
+                <button className={"Route"} onClick={btnLogout}>
                   <img src={logoutIcon} />
                   Logout
                 </button>

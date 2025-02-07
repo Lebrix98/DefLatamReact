@@ -7,7 +7,11 @@ const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [registerUser, setRegisterUser] = useState(null)
 
-  const sharedData = {user, setUser, registerUser, setRegisterUser}
+  const btnLogout = () => {
+    setUser(null)
+  }
+
+  const sharedData = {user, setUser, registerUser, setRegisterUser, btnLogout}
 
   return (
     <UserContext.Provider value={sharedData}>
