@@ -1,9 +1,8 @@
 import React, { useContext } from "react";
-import { PizzaContext } from "../../Context/PizzaContext";
+import { PizzaContext, UserContext } from "../../Context";
+import { useNavigate } from "react-router-dom";
 import { Capitalize } from "../../Helpers/functions";
 import "./style.css";
-import { UserContext } from "../../Context/UserContext";
-import { useNavigate } from "react-router-dom";
 
 export const Cart = () => {
   const { carts, setCarts, total } = useContext(PizzaContext);

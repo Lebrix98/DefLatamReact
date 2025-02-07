@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { Capitalize } from "../../Helpers/functions";
 import "./style.css";
-import { Link, useParams } from "react-router-dom";
 
 export const Pizza = ({ icons }) => {
   const [descPizza, setDescPizza] = useState([]);

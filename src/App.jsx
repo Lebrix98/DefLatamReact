@@ -1,20 +1,20 @@
+import { useContext } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
+import { UserContext } from "./Context";
+import PizzaProvider from "./Context/PizzaContext";
 
 import { Home, Register, Login, Cart, Profile, Error } from "./Pages/index";
 import { Footer, Navbar, Pizza } from "./components";
 
-import homeIcon from "./assets/svg/home.svg";
-import profileIcon from "./assets/svg/profile.svg";
-import logoutIcon from "./assets/svg/logout.svg";
-import logregIcon from "./assets/svg/log_reg.svg";
-import totalIcon from "./assets/svg/total.svg";
-import eyeIcons from "./assets/svg/eyes.svg";
-
-import PizzaProvider from "./Context/PizzaContext";
-
+import {
+  eyeIcons,
+  homeIcon,
+  logoutIcon,
+  logregIcon,
+  profileIcon,
+  totalIcon,
+} from "./assets/svg";
 import "./style.css";
-import { useContext } from "react";
-import { UserContext } from "./Context/UserContext";
 
 function App() {
   const icons = {

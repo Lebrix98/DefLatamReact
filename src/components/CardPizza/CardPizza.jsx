@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { PizzaContext } from "../../Context/PizzaContext";
-import { Link, useNavigate } from "react-router-dom";
+import { PizzaContext } from "../../Context";
+import { useNavigate } from "react-router-dom";
 import "./style.css";
 
 export const CardPizza = ({ icons }) => {

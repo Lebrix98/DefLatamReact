@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { UserContext } from "../../Context";
 import "./style.css";
-import { UserContext } from "../../Context/UserContext";
 
 export const Profile = () => {
   const [profile, setProfile] = useState([]);

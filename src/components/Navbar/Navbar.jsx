@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
-import { PizzaContext } from "../../Context/PizzaContext";
-import { UserContext } from "../../Context/UserContext";
+import { PizzaContext, UserContext } from "../../Context";
 import "./style.css";
 
 export const Navbar = ({ icons }) => {
