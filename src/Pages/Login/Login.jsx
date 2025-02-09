@@ -1,7 +1,11 @@
-import React, { useState } from "react";
-import './style.css';
+import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../Context";
+import "./style.css";
 
 export const Login = () => {
+  const { registerUser, setUser } = useContext(UserContext);
+
   const initEmail = "";
   const initPass = "";
 
@@ -14,6 +18,8 @@ export const Login = () => {
 
   const [message, setMessage] = useState(initMessage);
   const [error, setError] = useState(initError);
+
+  const navigate = useNavigate();
 
   const resetValues = () => {
     setEmail(initEmail);
@@ -31,11 +37,30 @@ export const Login = () => {
       setMessage("La Contraseña debe tener maximo 6 caracteres.");
       setError(true);
       return;
+    } else if (registerUser === null) {
+      setMessage("Debe registrarse.");
+      setError(true);
+      return;
+    } else if (registerUser.email !== email || registerUser.pass !== pass) {
+      setMessage("Los campos no coinciden.");
+      setError(true);
+      return;
     }
 
+    const loginData = {
+      email,
+      pass,
+    };
+
+    setUser(loginData);
     setMessage("Usuario Ingresando");
+    navigate("/profile")
     setError(false);
     resetValues();
+  };
+
+  const handleNavigate = () => {
+    navigate("/register");
   };
 
   return (
@@ -68,9 +93,18 @@ export const Login = () => {
               onChange={(e) => setPass(e.target.value)}
             />
           </div>
-          <button className="btn_Submit" type="submit">
-            Login
-          </button>
+          <div className="btns">
+            <button className="btn_Submit" type="submit">
+              Login
+            </button>
+            <button
+              className="btn_Submit"
+              type="submit"
+              onClick={handleNavigate}
+            >
+              Register
+            </button>
+          </div>
         </form>
       </div>
     </>

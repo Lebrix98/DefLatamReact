@@ -1,10 +1,13 @@
 import React, { useContext } from "react";
-import { PizzaContext } from "../../Context/PizzaContext";
+import { PizzaContext, UserContext } from "../../Context";
+import { useNavigate } from "react-router-dom";
 import { Capitalize } from "../../Helpers/functions";
 import "./style.css";
 
 export const Cart = () => {
   const { carts, setCarts, total } = useContext(PizzaContext);
+  const { user } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const handleAdd = (id) => {
     setCarts((prevCart) =>
@@ -22,6 +25,10 @@ export const Cart = () => {
         )
         .filter((item) => item.count > 0)
     );
+  };
+
+  const handleLogin = () => {
+    navigate("/login");
   };
 
   return (
@@ -55,13 +62,25 @@ export const Cart = () => {
           );
         })
       ) : (
-        <p className="notPizza">No hay nada en el Carrito :(</p>
+        <p className="notPizza">
+          {user
+            ? "No hay nada en el Carrito :("
+            : "Debe registrarse para poder comprar :("}
+        </p>
       )}
       <h2 className="Total_pizza">Total: $ {total.toLocaleString("es-CL")}</h2>
       <div className="btn_buy">
-        <button className={carts.length !== 0 ? "btn_Pay" : "btn_Pay disable"}>
-          Pagar
-        </button>
+        {user ? (
+          <button
+            className={carts.length !== 0 ? "btn_Pay" : "btn_Pay disable"}
+          >
+            Pagar
+          </button>
+        ) : (
+          <button className="btn_Pay" onClick={handleLogin}>
+            Login
+          </button>
+        )}
       </div>
     </div>
   );
