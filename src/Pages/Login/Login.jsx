@@ -4,7 +4,7 @@ import { UserContext } from "../../Context";
 import "./style.css";
 
 export const Login = () => {
-  const { registerUser, setUser } = useContext(UserContext);
+  const { loginUser } = useContext(UserContext);
 
   const initEmail = "";
   const initPass = "";
@@ -14,7 +14,7 @@ export const Login = () => {
 
   // Use State
   const [email, setEmail] = useState(initEmail);
-  const [pass, setPass] = useState(initPass);
+  const [password, setPass] = useState(initPass);
 
   const [message, setMessage] = useState(initMessage);
   const [error, setError] = useState(initError);
@@ -26,35 +26,21 @@ export const Login = () => {
     setPass(initPass);
   };
 
-  const validateInput = (e) => {
+  const validateInput = async (e) => {
     e.preventDefault();
 
-    if (!email.trim() || !pass.trim()) {
+    if (!email.trim() || !password.trim()) {
       setMessage("Todos los campos son Obligatorios.");
       setError(true);
       return;
-    } else if (pass.length > 6) {
+    } else if (password.length <= 5) {
       setMessage("La Contraseña debe tener maximo 6 caracteres.");
       setError(true);
       return;
-    } else if (registerUser === null) {
-      setMessage("Debe registrarse.");
-      setError(true);
-      return;
-    } else if (registerUser.email !== email || registerUser.pass !== pass) {
-      setMessage("Los campos no coinciden.");
-      setError(true);
-      return;
-    }
+    } 
 
-    const loginData = {
-      email,
-      pass,
-    };
-
-    setUser(loginData);
+    loginUser(email, password)
     setMessage("Usuario Ingresando");
-    navigate("/profile")
     setError(false);
     resetValues();
   };
@@ -89,7 +75,7 @@ export const Login = () => {
             <input
               type="password"
               name="Password"
-              value={pass}
+              value={password}
               onChange={(e) => setPass(e.target.value)}
             />
           </div>
