@@ -14,7 +14,14 @@ const UserProvider = ({ children }) => {
     setUser(null);
   };
 
-  const registerUser = async (email, password, repassword) => {
+  const registerUser = async (
+    email,
+    password,
+    repassword,
+    setMessage,
+    setError,
+    resetValues
+  ) => {
     const res = await fetch("http://localhost:5000/api/auth/register", {
       method: "POST",
       headers: {
@@ -23,17 +30,43 @@ const UserProvider = ({ children }) => {
       body: JSON.stringify({ email, password, repassword }),
     });
 
-    console.log(res)
-
     const data = await res.json();
-    console.log(data);
+
+    if (!email.trim() || !password.trim() || !repassword.trim()) {
+      setMessage(data?.error);
+      setError(true);
+      return;
+    } else if (password.length <= 5) {
+      setMessage(data?.error);
+      setError(true);
+      return;
+    } else if (password !== repassword) {
+      setMessage(data?.error || "Password invalid");
+      setError(true);
+      return;
+    } else if (data?.error) {
+      setMessage(data?.error);
+      setError(true);
+      return;
+    }
 
     if (!data?.error) {
-      navigate("/login");
+      if (repassword.length === password.length) {
+        setMessage("Usuario creado correctamente.");
+        setError(false);
+        resetValues();
+        navigate("/login");
+      }
     }
   };
 
-  const loginUser = async (email, password) => {
+  const loginUser = async (
+    email,
+    password,
+    setMessage,
+    setError,
+    resetValues
+  ) => {
     const res = await fetch("http://localhost:5000/api/auth/login", {
       method: "POST",
       headers: {
@@ -44,11 +77,40 @@ const UserProvider = ({ children }) => {
 
     const data = await res.json();
 
+    if (!email.trim() || !password.trim()) {
+      setMessage(data?.error);
+      setError(true);
+      return;
+    } else if (password.length <= 5) {
+      setMessage(data?.error);
+      setError(true);
+      return;
+    } else if (data?.error) {
+      setMessage(data?.error);
+      setError(true);
+      return;
+    }
+
     if (!data?.error) {
       localStorage.setItem("Token", data.token);
+      setMessage("Usuario Ingresando");
+      setError(false);
+      resetValues();
       setUser(data);
       navigate("/profile");
     }
+  };
+
+  const profileUser = async (token_jwt, setProfile) => {
+    const res = await fetch("http://localhost:5000/api/auth/me", {
+      headers: {
+        Authorization: `Bearer ${token_jwt}`,
+      },
+    });
+
+    const data = await res.json();
+
+    setProfile(data);
   };
 
   const sharedData = {
@@ -57,6 +119,7 @@ const UserProvider = ({ children }) => {
     btnLogout,
     loginUser,
     registerUser,
+    profileUser,
   };
 
   return (

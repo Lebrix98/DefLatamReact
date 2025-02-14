@@ -28,21 +28,7 @@ export const Login = () => {
 
   const validateInput = async (e) => {
     e.preventDefault();
-
-    if (!email.trim() || !password.trim()) {
-      setMessage("Todos los campos son Obligatorios.");
-      setError(true);
-      return;
-    } else if (password.length <= 5) {
-      setMessage("La Contraseña debe tener maximo 6 caracteres.");
-      setError(true);
-      return;
-    } 
-
-    loginUser(email, password)
-    setMessage("Usuario Ingresando");
-    setError(false);
-    resetValues();
+    loginUser(email, password, setMessage, setError, resetValues);
   };
 
   const handleNavigate = () => {

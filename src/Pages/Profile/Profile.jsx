@@ -3,17 +3,31 @@ import { UserContext } from "../../Context";
 import "./style.css";
 
 export const Profile = () => {
-  const [profile, setProfile] = useState([]);
+  const [random, setRandom] = useState([]);
+  const [profile, setProfile] = useState({});
   const [message, setMessage] = useState("");
 
-  const { btnLogout } = useContext(UserContext);
+  const { btnLogout, profileUser } = useContext(UserContext);
+  const token_jwt = localStorage.getItem("Token");
+
+  useEffect(() => {
+    if (token_jwt) {
+      profileUser(token_jwt, setProfile);
+    }
+  }, []);
+
+  const getUsernameFromEmail = (email) => {
+    const trimmedEmail = email.trim();
+    const parts = trimmedEmail.split("@");
+    return parts[0];
+  };
 
   const getData = async () => {
     try {
       const url = "https://randomuser.me/api/";
       const res = await fetch(url);
       const data = await res.json();
-      setProfile(data.results);
+      setRandom(data.results);
     } catch (error) {
       setMessage(error);
     }
@@ -27,7 +41,7 @@ export const Profile = () => {
     <>
       <div className="Container_profile">
         {!message ? (
-          profile.map((i, index) => {
+          random.map((i, index) => {
             return (
               <div key={index} className="Content_profile">
                 <div className="card_user">
@@ -38,14 +52,11 @@ export const Profile = () => {
                   />
                   <div className="information">
                     <h1 className="name">
-                      {i.name.first} {i.name.last}
+                      {getUsernameFromEmail(profile.email)}
                     </h1>
-                    <h3 className="location">
-                      Dirección: {i.location.state}, {i.location.city} ,
-                      {i.location.country}
+                    <h3 className="email">
+                      Correo Electrónico: {profile.email}
                     </h3>
-                    <h3 className="email">Correo Electrónico: {i.email}</h3>
-                    <h3 className="contact">Contacto: {i.cell}</h3>
                   </div>
                 </div>
               </div>

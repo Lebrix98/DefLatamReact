@@ -30,24 +30,7 @@ export const Register = () => {
   const validateInput = (e) => {
     e.preventDefault();
 
-    if (!email.trim() || !pass.trim() || !passCofirm.trim()) {
-      setMessage("Todos los campos son Obligatorios.");
-      setError(true);
-      return;
-    } else if (pass.length <= 5) {
-      setMessage("La Contraseña debe tener maximo 6 caracteres.");
-      setError(true);
-      return;
-    } else if (pass !== passCofirm) {
-      setMessage("Las Contraseñas ingresadas son distintas.");
-      setError(true);
-      return;
-    }
-
-    registerUser(email, pass, passCofirm);
-    setMessage("Usuario creado correctamente.");
-    setError(false);
-    resetValues();
+    registerUser(email, pass, passCofirm, setMessage, setError, resetValues);
   };
 
   return (
