@@ -7,12 +7,11 @@ export const Profile = () => {
   const [profile, setProfile] = useState({});
   const [message, setMessage] = useState("");
 
-  const { btnLogout, profileUser } = useContext(UserContext);
-  const token_jwt = localStorage.getItem("Token");
+  const { btnLogout, profileUser, token_jwt } = useContext(UserContext);
 
   useEffect(() => {
     if (token_jwt) {
-      profileUser(token_jwt, setProfile);
+      profileUser( setProfile);
     }
   }, []);
 

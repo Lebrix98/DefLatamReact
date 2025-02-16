@@ -6,6 +6,7 @@ export const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const token_jwt = localStorage.getItem("Token");
 
   const navigate = useNavigate();
 
@@ -101,7 +102,7 @@ const UserProvider = ({ children }) => {
     }
   };
 
-  const profileUser = async (token_jwt, setProfile) => {
+  const profileUser = async (setProfile) => {
     const res = await fetch("http://localhost:5000/api/auth/me", {
       headers: {
         Authorization: `Bearer ${token_jwt}`,
@@ -120,6 +121,7 @@ const UserProvider = ({ children }) => {
     loginUser,
     registerUser,
     profileUser,
+    token_jwt
   };
 
   return (
