@@ -1,12 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { PizzaContext, UserContext } from "../../Context";
 import { useNavigate } from "react-router-dom";
 import { Capitalize } from "../../Helpers/functions";
 import "./style.css";
+import Modal from "../../components/Modal/Modal";
 
 export const Cart = () => {
   const { carts, setCarts, total } = useContext(PizzaContext);
   const { user } = useContext(UserContext);
+  const [modalOpen, setModalOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleAdd = (id) => {
@@ -29,6 +31,15 @@ export const Cart = () => {
 
   const handleLogin = () => {
     navigate("/login");
+  };
+
+  const isOpen = () => {
+    setModalOpen(true);
+  };
+
+  const onClose = () => {
+    setModalOpen(false);
+    setCarts([]); //Settear valor del arreglo a vacio
   };
 
   return (
@@ -73,6 +84,7 @@ export const Cart = () => {
         {user ? (
           <button
             className={carts.length !== 0 ? "btn_Pay" : "btn_Pay disable"}
+            onClick={() => isOpen()}
           >
             Pagar
           </button>
@@ -82,6 +94,7 @@ export const Cart = () => {
           </button>
         )}
       </div>
+      <Modal isOpen={modalOpen} onClose={onClose} />
     </div>
   );
 };

@@ -32,7 +32,6 @@ const PizzaProvider = ({ children }) => {
         }),
       });
     }
-    console.log(carts)
     updateCart()
   }, [carts]);
 
