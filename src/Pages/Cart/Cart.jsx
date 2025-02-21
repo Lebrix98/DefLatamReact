@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { PizzaContext, UserContext } from "../../Context";
 import { useNavigate } from "react-router-dom";
 import { Capitalize } from "../../Helpers/functions";
@@ -7,7 +7,7 @@ import Modal from "../../components/Modal/Modal";
 
 export const Cart = () => {
   const { carts, setCarts, total } = useContext(PizzaContext);
-  const { user } = useContext(UserContext);
+  const { user, token_jwt } = useContext(UserContext);
   const [modalOpen, setModalOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -39,8 +39,26 @@ export const Cart = () => {
 
   const onClose = () => {
     setModalOpen(false);
-    setCarts([]); //Settear valor del arreglo a vacio
+    console.log(carts);
+    // setCarts([]); //Settear valor del arreglo a vacio
   };
+
+  useEffect(() => {
+    async function updateCart() {
+      const urlCart = "http://localhost:5000/api/checkouts";
+      await fetch(urlCart, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token_jwt}`,
+        },
+        body: JSON.stringify({
+          cart: carts,
+        }),
+      });
+    }
+    updateCart();
+  }, [modalOpen]);
 
   return (
     <div className="Container_cart">
