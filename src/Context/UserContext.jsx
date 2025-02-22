@@ -12,6 +12,7 @@ const UserProvider = ({ children }) => {
 
   const btnLogout = () => {
     localStorage.removeItem("Token");
+    navigate("/");
     setUser(null);
   };
 
@@ -121,7 +122,7 @@ const UserProvider = ({ children }) => {
     loginUser,
     registerUser,
     profileUser,
-    token_jwt
+    token_jwt,
   };
 
   return (

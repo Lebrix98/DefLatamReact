@@ -7,7 +7,7 @@ import Modal from "../../components/Modal/Modal";
 
 export const Cart = () => {
   const { carts, setCarts, total } = useContext(PizzaContext);
-  const { user, token_jwt } = useContext(UserContext);
+  const { token_jwt } = useContext(UserContext);
   const [modalOpen, setModalOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -40,24 +40,26 @@ export const Cart = () => {
   const onClose = () => {
     setModalOpen(false);
     console.log(carts);
-    // setCarts([]); //Settear valor del arreglo a vacio
+    setCarts([]); //Settear valor del arreglo a vacio
   };
 
   useEffect(() => {
-    async function updateCart() {
-      const urlCart = "http://localhost:5000/api/checkouts";
-      await fetch(urlCart, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token_jwt}`,
-        },
-        body: JSON.stringify({
-          cart: carts,
-        }),
-      });
+    if (modalOpen) {
+      async function updateCart() {
+        const urlCart = "http://localhost:5000/api/checkouts";
+        await fetch(urlCart, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token_jwt}`,
+          },
+          body: JSON.stringify({
+            cart: carts,
+          }),
+        });
+      }
+      updateCart();
     }
-    updateCart();
   }, [modalOpen]);
 
   return (
@@ -92,14 +94,14 @@ export const Cart = () => {
         })
       ) : (
         <p className="notPizza">
-          {user
+          {token_jwt
             ? "No hay nada en el Carrito :("
             : "Debe registrarse para poder comprar :("}
         </p>
       )}
       <h2 className="Total_pizza">Total: $ {total.toLocaleString("es-CL")}</h2>
       <div className="btn_buy">
-        {user ? (
+        {token_jwt ? (
           <button
             className={carts.length !== 0 ? "btn_Pay" : "btn_Pay disable"}
             onClick={() => isOpen()}
