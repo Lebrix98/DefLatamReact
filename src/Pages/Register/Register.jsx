@@ -1,12 +1,9 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "../../Context";
-import { useNavigate } from "react-router-dom";
 import "./style.css";
 
 export const Register = () => {
-
-  const {setRegisterUser} = useContext(UserContext)
-  const navigate = useNavigate();
+  const { registerUser, errorReg } = useContext(UserContext);
 
   // Initial Value
   const initEmail = "";
@@ -33,30 +30,7 @@ export const Register = () => {
   const validateInput = (e) => {
     e.preventDefault();
 
-    if (!email.trim() || !pass.trim() || !passCofirm.trim()) {
-      setMessage("Todos los campos son Obligatorios.");
-      setError(true);
-      return;
-    } else if (pass.length > 6) {
-      setMessage("La Contraseña debe tener maximo 6 caracteres.");
-      setError(true);
-      return;
-    } else if (pass !== passCofirm) {
-      setMessage("Las Contraseñas ingresadas son distintas.");
-      setError(true);
-      return;
-    }
-
-    const userData = {
-      email,
-      pass
-    }
-
-    setMessage("Usuario creado correctamente.");
-    setRegisterUser(userData)
-    navigate("/login")
-    setError(false);
-    resetValues();
+    registerUser(email, pass, passCofirm, setMessage, setError, resetValues);
   };
 
   return (

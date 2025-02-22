@@ -26,7 +26,7 @@ function App() {
     eyeIcons,
   };
 
-  const { user } = useContext(UserContext);
+  const { token_jwt } = useContext(UserContext);
 
   return (
     <>
@@ -40,12 +40,12 @@ function App() {
               <Route path="/" element={<Home icons={icons} />} />
               <Route
                 path="/profile"
-                element={user ? <Profile /> : <Navigate to="/" />}
+                element={token_jwt ? <Profile /> : <Navigate to="/" />}
               />
               <Route path="/register" element={<Register />} />
               <Route
                 path="/login"
-                element={user ? <Navigate to="/" /> : <Login />}
+                element={token_jwt ? <Navigate to="/" /> : <Login />}
               />
               <Route path="/cart" element={<Cart />} />
               <Route path="/pizza/:id" element={<Pizza icons={icons} />} />

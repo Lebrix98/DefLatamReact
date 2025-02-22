@@ -1,12 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { PizzaContext, UserContext } from "../../Context";
 import { useNavigate } from "react-router-dom";
 import { Capitalize } from "../../Helpers/functions";
 import "./style.css";
+import Modal from "../../components/Modal/Modal";
 
 export const Cart = () => {
   const { carts, setCarts, total } = useContext(PizzaContext);
-  const { user } = useContext(UserContext);
+  const { token_jwt } = useContext(UserContext);
+  const [modalOpen, setModalOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleAdd = (id) => {
@@ -30,6 +32,35 @@ export const Cart = () => {
   const handleLogin = () => {
     navigate("/login");
   };
+
+  const isOpen = () => {
+    setModalOpen(true);
+  };
+
+  const onClose = () => {
+    setModalOpen(false);
+    console.log(carts);
+    setCarts([]); //Settear valor del arreglo a vacio
+  };
+
+  useEffect(() => {
+    if (modalOpen) {
+      async function updateCart() {
+        const urlCart = "http://localhost:5000/api/checkouts";
+        await fetch(urlCart, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token_jwt}`,
+          },
+          body: JSON.stringify({
+            cart: carts,
+          }),
+        });
+      }
+      updateCart();
+    }
+  }, [modalOpen]);
 
   return (
     <div className="Container_cart">
@@ -63,16 +94,17 @@ export const Cart = () => {
         })
       ) : (
         <p className="notPizza">
-          {user
+          {token_jwt
             ? "No hay nada en el Carrito :("
             : "Debe registrarse para poder comprar :("}
         </p>
       )}
       <h2 className="Total_pizza">Total: $ {total.toLocaleString("es-CL")}</h2>
       <div className="btn_buy">
-        {user ? (
+        {token_jwt ? (
           <button
             className={carts.length !== 0 ? "btn_Pay" : "btn_Pay disable"}
+            onClick={() => isOpen()}
           >
             Pagar
           </button>
@@ -82,6 +114,7 @@ export const Cart = () => {
           </button>
         )}
       </div>
+      <Modal isOpen={modalOpen} onClose={onClose} />
     </div>
   );
 };

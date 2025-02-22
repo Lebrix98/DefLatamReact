@@ -34,16 +34,7 @@
         > .name {
           margin-bottom: 1rem;
         }
-        > .age {
-          margin-bottom: 0.5rem;
-        }
-        > .location {
-          margin-bottom: 0.5rem;
-        }
         > .email {
-          margin-bottom: 0.5rem;
-        }
-        > .contact {
           margin-bottom: 0.5rem;
         }
       }
